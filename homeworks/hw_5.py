@@ -25,10 +25,10 @@ print(result)
 #####################################################
 print('4)-----------------------------------------------')
 my_list = [23, 326, 23, 45, 'qwr', [3.14, 'avs']]
-first_elem = my_list.pop(0)
-new_list = my_list
-new_list.append(first_elem)
+new_list = my_list.copy()
+new_list.append(new_list.pop(0))
 print(new_list)
+print(my_list)
 #####################################################
 print('5)-----------------------------------------------')
 my_list = [23, 326, 23, 45, 'qwr', [3.14, 'avs']]
