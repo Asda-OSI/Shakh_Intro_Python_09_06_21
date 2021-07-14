@@ -23,11 +23,9 @@ print(result)
 print('3)-----------------------------------------------')
 my_list = ['rSran', 'clf', "asda", 'rkl', 'kakc', 'al']
 result = []
-for index, symbol in enumerate(my_list):
-    for str_index, str_symbol in enumerate(symbol):
-        if str_symbol == 'a':
-            result.append(symbol)
-            break
+for index, value in enumerate(my_list):
+    if 'a' in value:
+        result.append(value)
 
 print(result)
 #####################################################
@@ -45,7 +43,7 @@ print(result)
 print('5)-----------------------------------------------')
 my_str = 'somelongstringwithoutspaces'
 result = []
-for index, symbol in enumerate(my_str):
+for index, symbol in enumerate(set(my_str)):
     if my_str.count(symbol) == 1:
         result.append(symbol)
 print(result)
@@ -61,16 +59,17 @@ print(result)
 print('7)-----------------------------------------------')
 my_str_1 = 'somelongstringwithoutspaces'
 my_str_2 = 'another string with spaces'
-my_list_1 = []
-my_list_2 = []
 result = []
-for index_1, symbol_1 in enumerate(my_str_1):
-    if my_str_1.count(symbol_1) == 1:
-        my_list_1.append(symbol_1)
-for index_2, symbol_2 in enumerate(my_str_2):
-    if my_str_2.count(symbol_2) == 1:
-        my_list_2.append(symbol_2)
-result = list(set(my_list_1).intersection(set(my_list_2)))
+# for index_1, symbol_1 in enumerate(my_str_1):
+#     if my_str_1.count(symbol_1) == 1:
+#         my_list_1.append(symbol_1)
+# for index_2, symbol_2 in enumerate(my_str_2):
+#     if my_str_2.count(symbol_2) == 1:
+#         my_list_2.append(symbol_2)
+my_list = list(set(my_str_1).intersection(set(my_str_2)))
+for index, symbol in enumerate(my_list):
+    if my_str_1.count(symbol) == 1 and my_str_2.count(symbol) == 1:
+        result.append(symbol)
 print(result)
 ####################################################
 
