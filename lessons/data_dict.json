@@ -1,0 +1,8 @@
+{
+  "name": "john",
+  "age": 13,
+  "job": {
+    "title": "Data Engineer",
+    "price": "1000$"
+  }
+}
