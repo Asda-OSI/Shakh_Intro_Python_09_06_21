@@ -15,14 +15,12 @@ def get_unique_quote(number):
                   }
         response = requests.get(url, params=params)
         raw_quote = response.json()
-        print(raw_quote)
         if len(raw_quote['quoteAuthor']) != 0:
             quote_dict['Author'] = raw_quote['quoteAuthor']
             quote_dict['Quote'] = raw_quote['quoteText']
             quote_dict['URL'] = raw_quote['quoteLink']
             unique_quotes.append(quote_dict)
         quote_dict = {}
-    print(unique_quotes)
     return unique_quotes
 
 
