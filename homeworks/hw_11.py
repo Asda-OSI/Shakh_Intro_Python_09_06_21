@@ -17,37 +17,26 @@ print(f'Json data: {read_json("data.json")}')
 # Если фамилии нет, то использовать имя, например Euclid.
 
 
-def split_name(path):
+def sort_by_last_name(path):
     dicts_list = read_json(path)
     for dict in dicts_list:
         splited_name = dict['name'].split(' ')
         dict['name'] = splited_name
-    return dicts_list
 
-
-def sort_by_last_name(last_name_dict):
-    last_name = last_name_dict['name']
-    last_name = last_name[-1]
-    first_name = last_name_dict['name']
-    first_name = first_name[0]
-    return last_name, first_name
-
-
-def join_name(path):
-    sorted_by_last_name_list = sorted(split_name(path), key=sort_by_last_name)
+    sorted_by_last_name_list = sorted(dicts_list, key=lambda x: (x['name'][-1], x['name'][0]))
     for dict in sorted_by_last_name_list:
         joined_name = ' '.join(dict['name'])
         dict['name'] = joined_name
     return sorted_by_last_name_list
 
 
-print(f'Sorted by last name: {join_name("data.json")}')
+print(f'Sorted by last name: {sort_by_last_name("data.json")}')
 
 
 # 3. Написать функцию сортировки по дате смерти из поля "years".
 
 
-def split_year(path):
+def sort_by_year(path):
     dicts_list = read_json(path)
     for dict in dicts_list:
         splited_years = dict['years'].split(' ')
@@ -55,16 +44,8 @@ def split_year(path):
         if dict['years'][-1] == 'BC.':
             dict['years'][-2] = f'-{dict["years"][-2]}'
             dict['years'].pop(-1)
-    return dicts_list
 
-
-def sort_by_year(year_dict):
-    year = float(year_dict['years'][-1])
-    return year
-
-
-def join_year(path):
-    sorted_by_year_list = sorted(split_year(path), key=sort_by_year)
+    sorted_by_year_list = sorted(dicts_list, key=lambda x: float(x['years'][-1]))
     for dict in sorted_by_year_list:
         if float(dict['years'][-1]) < 0:
             dict['years'][-1] = dict['years'][-1].replace('-', '')
@@ -74,27 +55,22 @@ def join_year(path):
     return sorted_by_year_list
 
 
-print(f'Sorted by last year: {join_year("data.json")}')
+print(f'Sorted by last year: {sort_by_year("data.json")}')
 
 
 # 4. Написать функцию сортировки по количеству слов в поле "text"
 
 
-def split_text(path):
+def sort_by_words_number(path):
     dicts_list = read_json(path)
     for dict in dicts_list:
         splited_text = dict['text'].split(' ')
         dict['text'] = splited_text
-    return dicts_list
-
-
-def join_text(path):
-    sorted_by_words_number_list = sorted(split_text(path), key=lambda x: len(x.get('text')))
+    sorted_by_words_number_list = sorted(dicts_list, key=lambda x: len(x.get('text')))
     for dict in sorted_by_words_number_list:
         joined_text = ' '.join(dict['text'])
         dict['text'] = joined_text
     return sorted_by_words_number_list
 
 
-print(f'Sorted by words number in text field: {join_text("data.json")}')
-
+print(f'Sorted by words number in text field: {sort_by_words_number("data.json")}')
