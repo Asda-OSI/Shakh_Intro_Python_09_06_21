@@ -27,11 +27,12 @@ def get_unique_quote(number):
 # 2
 def write_to_csv(number, filename='unique_quotes.csv'):
     data = get_unique_quote(number)
+    sorted_data_by_author_name = sorted(data, key=lambda x: x.get('Author'))
     fieldnames = data[0].keys()
     with open(filename, "w") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(data)
+        writer.writerows(sorted_data_by_author_name)
 
 
 write_to_csv(5)
