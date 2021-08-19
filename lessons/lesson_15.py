@@ -9,7 +9,7 @@ import random
 
 
 class WorkWithFiles:
-    def __init__(self, dirname = 'alphabet'):
+    def __init__(self, dirname='alphabet'):
         self._dirname = dirname
         self.create_dir()
 
