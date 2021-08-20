@@ -52,7 +52,7 @@ print(f'Sorted by last year: {sorted_by_year_list}')
 
 def sort_by_words_number(path):
     dicts_list = read_json(path)
-    template = r'[a-zA-Z0-9]+'
+    template = r"[a-zA-Z0-9'’-]+"
     sorted_by_words_number_list = sorted(dicts_list, key=lambda x: len(re.findall(template, x.get('text'))))
     return sorted_by_words_number_list
 
